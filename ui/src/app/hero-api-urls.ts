@@ -1,6 +1,5 @@
-const Host: string = "http://cbarchvm01"
-const Port: string = "8081"
+import { environment } from "src/environments/environment";
 
 export const HeroApiUrls = {
-  "Heroes": `${Host}:${Port}/heroes`
+  "Heroes": `${environment.apiHost}:${environment.apiPort}/heroes`
 }
