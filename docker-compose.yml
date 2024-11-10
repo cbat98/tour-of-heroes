@@ -1,0 +1,15 @@
+services:
+  ui:
+    build:
+      context: "./ui"
+      dockerfile: "Dockerfile"
+    ports:
+      - 8080:80
+    environment:
+      - NGINX_HOST=cbarchvm01
+  api:
+    build:
+      context: "./api"
+      dockerfile: "Dockerfile"
+    ports:
+      - 8081:80
