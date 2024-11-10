@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  Host: "cbarchvm01",
-  Port: "8081"
+  apiHost: "cbarchvm01",
+  apiPort: "8081"
 };
