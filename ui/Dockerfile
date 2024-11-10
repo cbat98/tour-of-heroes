@@ -14,7 +14,7 @@ RUN npm run build
 
 FROM nginx:1.27 AS run
 
-WORKDIR /app
+WORKDIR /usr/share/nginx/html
 
 ENV NGINX_PORT=80
 ENV NGINX_HOST=localhost
