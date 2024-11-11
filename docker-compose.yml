@@ -6,7 +6,7 @@ services:
     ports:
       - 8081:80
     environment:
-      - NGINX_HOST=charlie-nixlt
+      - NGINX_HOST=ui
       - NGINX_PORT=80
   api:
     build:
