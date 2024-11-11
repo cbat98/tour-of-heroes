@@ -1,6 +1,6 @@
 export const environment = {
   production: true,
-  apiHost: "https://heroes.chrl.uk",
-  apiPort: "443",
+  apiHost: "http://cbarchvm01",
+  apiPort: "5152",
   apiRoute: "api/v1"
 };
