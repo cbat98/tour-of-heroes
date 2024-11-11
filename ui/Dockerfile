@@ -4,6 +4,8 @@ FROM node:18.20 AS build
 
 WORKDIR /app
 
+ENV NODE_OPTIONS=--max-old-space-size=2048M
+
 COPY package.json package-lock.json .
 
 RUN npm ci --force
