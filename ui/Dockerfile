@@ -18,8 +18,8 @@ FROM nginx:1.27 AS run
 
 WORKDIR /usr/share/nginx/html
 
-ENV NGINX_PORT=80
 ENV NGINX_HOST=localhost
+ENV NGINX_PORT=80
 
 COPY --from=build /app/dist/tour-of-heroes /usr/share/nginx/html
 COPY ./nginx.conf.template /etc/nginx/templates/
