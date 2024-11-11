@@ -4,7 +4,7 @@ FROM node:18.20 AS build
 
 WORKDIR /app
 
-ENV NODE_OPTIONS=--max-old-space-size=2048M
+ENV NODE_OPTIONS=--max-old-space-size=2048
 
 COPY package.json package-lock.json .
 
