@@ -11,7 +11,9 @@ FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS run
 WORKDIR /app
 
 ENV ASPNETCORE_URLS=https://+:443;http://+:80
+ENV ASPNETCORE_Kestrel__Certificates__Default__Path=/cert/_.chrl.uk.pfx
 
 COPY --from=build /app/pub .
+COPY _.chrl.uk.pfx /cert/
 
-ENTRYPOINT ["dotnet", "TourOfHeroes.API.dll"]
+ENTRYPOINT ["dotnet", "./TourOfHeroes.API.dll"]
