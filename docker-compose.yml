@@ -6,7 +6,8 @@ services:
     ports:
       - 8080:80
     environment:
-      - NGINX_HOST=heroes.chrl.uk
+      - NGINX_HOST=cbarchvm01
+      - NGINX_PORT=8080
   api:
     build:
       context: "./api"
