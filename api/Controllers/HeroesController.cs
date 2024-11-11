@@ -5,7 +5,7 @@ using TourOfHeroes.API.Services;
 namespace TourOfHeroes.API.Controllers;
 
 [ApiController]
-[Route("[controller]")]
+[Route("api/v1/[controller]")]
 public class HeroesController : ControllerBase
 {
     private readonly IHeroesService _heroesService;
