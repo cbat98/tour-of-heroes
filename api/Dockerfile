@@ -10,7 +10,7 @@ FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS run
 
 WORKDIR /app
 
-ENV HTTP_PORTS=80
+ENV ASPNETCORE_URLS=https://+:443;http://+:80
 
 COPY --from=build /app/pub .
 
