@@ -4,7 +4,7 @@ services:
       context: "./ui"
       dockerfile: "Dockerfile"
     ports:
-      - 8081:80
+      - 8080:80
     environment:
       - NGINX_HOST=ui
       - NGINX_PORT=80
@@ -18,9 +18,7 @@ services:
   proxy:
     image: nginx:1.27
     ports:
-      - 8080:80
-    environment:
-      - NGINX_HOST=cbarchvm01
-      - NGINX_PORT=80
+      - 80:80
+      - 443:443
     volumes:
       - ./proxy/nginx.conf.template:/etc/nginx/templates/nginx.conf.template
