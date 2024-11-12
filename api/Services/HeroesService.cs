@@ -16,9 +16,9 @@ public class HeroesService : IHeroesService
       new Hero(20, "Tornado")
     };
 
-    public IList<Hero> GetHeroes(string searchTerm)
+    public IList<Hero> GetHeroes(string name)
     {
-        return _heroes.Where(h => h.Name.ToLower().Contains(searchTerm.ToLower())).ToList();
+        return _heroes.Where(h => h.Name.ToLower().Contains(name.ToLower())).ToList();
     }
 
     public Hero? GetHero(int id)

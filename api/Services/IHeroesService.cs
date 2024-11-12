@@ -4,7 +4,7 @@ namespace TourOfHeroes.API.Services;
 
 public interface IHeroesService
 {
-    public IList<Hero> GetHeroes(string searchTerm);
+    public IList<Hero> GetHeroes(string name);
     public Hero? GetHero(int id);
     public Hero? UpdateHero(Hero hero, string name);
     public Hero AddHero(NewHeroDto newHero);

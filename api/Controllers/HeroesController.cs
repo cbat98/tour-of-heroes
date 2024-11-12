@@ -18,9 +18,9 @@ public class HeroesController : ControllerBase
     [HttpGet]
     [Route("")]
     [ProducesResponseType(StatusCodes.Status200OK)]
-    public IList<Hero> GetHeroes(string searchTerm = "")
+    public IList<Hero> GetHeroes(string name = "")
     {
-        return _heroesService.GetHeroes(searchTerm);
+        return _heroesService.GetHeroes(name);
     }
 
     [HttpGet]
