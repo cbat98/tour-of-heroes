@@ -4,7 +4,6 @@ server {
     ssl_certificate /etc/ssl/chrl.pem;
     ssl_certificate_key /etc/ssl/chrl.key;
 
-
     location / {
         proxy_pass http://ui:80;
     }
