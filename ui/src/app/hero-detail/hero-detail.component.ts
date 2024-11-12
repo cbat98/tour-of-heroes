@@ -16,7 +16,12 @@ export class HeroDetailComponent {
     private route: ActivatedRoute,
     private heroService: HeroService,
     private location: Location
-  ) {}
+  ) {
+    this.hero = {
+      id: 0,
+      name: "Hero"
+    }
+  }
 
   ngOnInit(): void {
     this.getHero();

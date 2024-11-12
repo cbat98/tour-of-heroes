@@ -10,7 +10,9 @@ import { HeroService } from '../hero.service';
 export class DashboardComponent {
   heroes: Hero[] = [];
 
-  constructor(private heroService: HeroService) { }
+  constructor(private heroService: HeroService) {
+    this.heroes.push({id: 0, name: "Hero"})
+  }
 
   ngOnInit(): void {
     this.getHeroes();

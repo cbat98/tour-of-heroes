@@ -11,7 +11,9 @@ import { MessageService } from '../message.service';
 export class HeroesComponent {
   heroes: Hero[] = [];
 
-  constructor(private heroService: HeroService, private messageService: MessageService) {}
+  constructor(private heroService: HeroService, private messageService: MessageService) {
+    this.heroes.push({id: 0, name:"Hero"})
+  }
 
   ngOnInit(): void {
     this.getHeroes();
