@@ -22,3 +22,5 @@ services:
       - 443:443
     volumes:
       - ./proxy/nginx.conf.template:/etc/nginx/templates/nginx.conf.template
+      - ./proxy/chrl.pem:/etc/ssl/chrl.pem
+      - ./proxy/chrl.key:/etc/ssl/chrl.key
