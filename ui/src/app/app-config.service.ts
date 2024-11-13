@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { AppConfig } from 'src/app/app-config.type';
 import { tap, catchError, of, Observable, map } from 'rxjs';
 import { MessageService } from './message.service';
-import { environment } from 'src/environments/environment.development';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -18,6 +18,7 @@ export class AppConfigService {
   ) { }
 
   loadAppConfig() {
+    console.log(`IsProduction: ${environment.production}`);
     const configUrl = environment.configUrl;
 
     return this.http.get<AppConfig>(configUrl)
