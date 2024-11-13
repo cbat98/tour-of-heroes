@@ -1,4 +1,4 @@
 {
-  "apiHost": "http://localhost:5152",
+  "apiHost": "https://heroes.chrl.uk",
   "apiRoute": "api/v1"
 }
