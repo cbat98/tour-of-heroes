@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { AppConfig } from 'src/app/app-config.type';
 import { tap, catchError, of, Observable, map } from 'rxjs';
 import { MessageService } from './message.service';
+import { environment } from 'src/environments/environment.development';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +18,9 @@ export class AppConfigService {
   ) { }
 
   loadAppConfig() {
-    return this.http.get<AppConfig>('/assets/config.json')
+    const configUrl = environment.configUrl;
+
+    return this.http.get<AppConfig>(configUrl)
       .pipe(
         map((config: AppConfig) => this.appConfig = config),
         tap(_ => this.log('loaded config')),
