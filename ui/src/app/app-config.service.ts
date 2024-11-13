@@ -18,7 +18,6 @@ export class AppConfigService {
   ) { }
 
   loadAppConfig() {
-    console.log(`IsProduction: ${environment.production}`);
     const configUrl = environment.configUrl;
 
     return this.http.get<AppConfig>(configUrl)
