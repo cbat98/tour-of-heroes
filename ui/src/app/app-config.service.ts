@@ -34,6 +34,7 @@ export class AppConfigService {
   }
 
   private handleError<T>(operation = 'operation', result?: T) {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     return (error: any): Observable<T> => {
       console.error(error);
       this.log(`${operation} failed: ${error.message}`);

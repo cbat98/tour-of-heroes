@@ -42,9 +42,9 @@ export class HeroService {
       )
   }
 
-  updateHero(hero: Hero): Observable<any> {
+  updateHero(hero: Hero): Observable<Hero> {
     const url = `${this.heroApiUrls.heroes}/${hero.id}`
-    return this.http.put(url, hero, this.httpOptions)
+    return this.http.put<Hero>(url, hero, this.httpOptions)
       .pipe(
         tap(_ => this.log(`updated hero id=${hero.id}`)),
         catchError(this.handleError<Hero>('updateHero'))
