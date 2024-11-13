@@ -36,12 +36,12 @@ export class HeroService {
       )
   }
 
-  updateHero(hero: Hero): Observable<any> {
+  updateHero(hero: Hero): Observable<Hero> {
     const url = `${HeroApiUrls.Heroes}/${hero.id}`
-    return this.http.put(url, hero, this.httpOptions)
+    return this.http.put<Hero>(url, hero, this.httpOptions)
       .pipe(
         tap(_ => this.log(`updated hero id=${hero.id}`)),
-        catchError(this.handleError<any>('updateHero'))
+        catchError(this.handleError<Hero>('updateHero'))
       )
   }
 
@@ -49,7 +49,7 @@ export class HeroService {
     return this.http.post<Hero>(HeroApiUrls.Heroes, hero, this.httpOptions)
       .pipe(
         tap((newHero: Hero) => this.log(`added hero id=${newHero.id}`)),
-        catchError(this.handleError<any>(`addHero`))
+        catchError(this.handleError<Hero>(`addHero`))
       )
   }
 
@@ -81,6 +81,7 @@ export class HeroService {
   }
 
   private handleError<T>(operation = 'operation', result?: T) {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     return (error: any): Observable<T> => {
       console.error(error);
       this.log(`${operation} failed: ${error.message}`);
