@@ -1,0 +1,4 @@
+{
+  "apiHost": "http://localhost:5152",
+  "apiRoute": "api/v1"
+}
