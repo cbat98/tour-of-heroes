@@ -136,8 +136,21 @@ public class HeroesData : IHeroesData
 
     public bool DeleteHero(int id)
     {
-        var hero = _heroes.FirstOrDefault(h => h.Id == id);
+        var query =
+            @"
+                DELETE FROM tbl_heroes
+                WHERE id = $id
+            ";
 
-        return (hero is not null) ? _heroes.Remove(hero) : false;
+        var parameters = new Dictionary<string, object> {
+            { "id", id }
+        };
+
+        using var connection = new SqliteConnection(_dataConfig.ConnectionString);
+        connection.Open();
+
+        var rowsChanged = HeroesDbHelper.CreateCommand(connection, query, parameters).ExecuteNonQuery();
+
+        return rowsChanged > 0;
     }
 }
