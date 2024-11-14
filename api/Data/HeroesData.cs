@@ -19,7 +19,33 @@ public class HeroesData : IHeroesData
 
     public IList<Hero> GetHeroes(string name)
     {
-        return _heroes.Where(h => h.Name.ToLower().Contains(name.ToLower())).ToList();
+        var query =
+            @"
+                SELECT id, name
+                FROM tbl_heroes
+                WHERE name LIKE $searchTerm;
+            ";
+
+        using var connection = new SqliteConnection(_dataConfig.ConnectionString);
+        connection.Open();
+
+        var parameters = new Dictionary<string, object> {
+            { "searchTerm", $"%{name}%" }
+        };
+
+        var reader = HeroesDbHelper.ExecuteQueryWithParameter(connection, query, parameters);
+
+        var heroes = new List<Hero>();
+
+        while (reader.Read())
+        {
+            var heroId = reader.GetInt32(0);
+            var heroName = reader.GetString(1);
+
+            heroes.Add(new Hero(heroId, heroName));
+        }
+
+        return heroes;
     }
 
     public Hero? GetHero(int id)
