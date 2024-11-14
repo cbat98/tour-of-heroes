@@ -12,9 +12,9 @@ public class HeroesService : IHeroesService
         _heroesData = heroesData;
     }
 
-    public Hero AddHero(NewHeroDto newHero)
+    public Hero AddHero(NewHeroDto newHeroDto)
     {
-        return _heroesData.AddHero(newHero);
+        return _heroesData.AddHero(newHeroDto);
     }
 
     public bool DeleteHero(int id)

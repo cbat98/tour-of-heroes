@@ -39,19 +39,16 @@ public class HeroesController : ControllerBase
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-    public ActionResult<Hero> UpdateHero(int id, Hero newHero)
+    public ActionResult<Hero> UpdateHero(int id, NewHeroDto newHeroDto)
     {
-        newHero.SetId(id);
-        var hero = _heroesService.GetHero(newHero.Id);
-
-        Console.WriteLine($"[{newHero.Id}] {newHero.Name}");
+        var hero = _heroesService.GetHero(id);
 
         if (hero is null)
         {
             return NotFound();
         }
 
-        hero = _heroesService.UpdateHero(hero, newHero.Name);
+        hero = _heroesService.UpdateHero(hero, newHeroDto.Name);
 
         return (hero is not null) ? Ok() : NotFound();
     }
@@ -59,9 +56,9 @@ public class HeroesController : ControllerBase
     [HttpPost]
     [Route("")]
     [ProducesResponseType(StatusCodes.Status200OK)]
-    public ActionResult<Hero> AddHero(NewHeroDto newHero)
+    public ActionResult<Hero> AddHero(NewHeroDto newHeroDto)
     {
-        var hero = _heroesService.AddHero(newHero);
+        var hero = _heroesService.AddHero(newHeroDto);
 
         return Ok(hero);
     }

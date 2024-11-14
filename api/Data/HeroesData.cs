@@ -100,7 +100,7 @@ public class HeroesData : IHeroesData
         return rowsChanged > 0 ? new Hero(hero.Id, name) : null;
     }
 
-    public Hero AddHero(NewHeroDto newHero)
+    public Hero AddHero(NewHeroDto newHeroDto)
     {
         var query =
             @"
@@ -109,7 +109,7 @@ public class HeroesData : IHeroesData
             ";
 
         var parameters = new Dictionary<string, object> {
-            { "name", newHero.Name }
+            { "name", newHeroDto.Name }
         };
 
         using var connection = new SqliteConnection(_dataConfig.ConnectionString);
