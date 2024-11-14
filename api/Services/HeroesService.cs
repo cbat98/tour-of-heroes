@@ -1,52 +1,39 @@
+using TourOfHeroes.API.Data;
 using TourOfHeroes.API.Models;
 
 namespace TourOfHeroes.API.Services;
 
 public class HeroesService : IHeroesService
 {
-    private readonly IList<Hero> _heroes = new List<Hero> {
-      new Hero(12, "Dr. Nice"),
-      new Hero(13, "Bombasto"),
-      new Hero(14, "Celeritas"),
-      new Hero(15, "Magneta"),
-      new Hero(16, "RubberMan"),
-      new Hero(17, "Dynama"),
-      new Hero(18, "Dr. IQ"),
-      new Hero(19, "Magma"),
-      new Hero(20, "Tornado")
-    };
+    private readonly IHeroesData _heroesData;
 
-    public IList<Hero> GetHeroes(string name)
+    public HeroesService(IHeroesData heroesData)
     {
-        return _heroes.Where(h => h.Name.ToLower().Contains(name.ToLower())).ToList();
-    }
-
-    public Hero? GetHero(int id)
-    {
-        return _heroes.FirstOrDefault(h => h.Id == id);
-    }
-
-    public Hero? UpdateHero(Hero hero, string name)
-    {
-        var success = hero.SetName(name);
-
-        return (success) ? hero : null;
+        _heroesData = heroesData;
     }
 
     public Hero AddHero(NewHeroDto newHero)
     {
-        var id = _heroes.Max(h => h.Id) + 1;
-        var hero = new Hero(id, newHero.Name);
-
-        _heroes.Add(hero);
-
-        return hero;
+        return _heroesData.AddHero(newHero);
     }
 
     public bool DeleteHero(int id)
     {
-        var hero = _heroes.FirstOrDefault(h => h.Id == id);
+        return _heroesData.DeleteHero(id);
+    }
 
-        return (hero is not null) ? _heroes.Remove(hero) : false;
+    public Hero? GetHero(int id)
+    {
+        return _heroesData.GetHero(id);
+    }
+
+    public IList<Hero> GetHeroes(string name)
+    {
+        return _heroesData.GetHeroes(name);
+    }
+
+    public Hero? UpdateHero(Hero hero, string name)
+    {
+        return _heroesData.UpdateHero(hero, name);
     }
 }
