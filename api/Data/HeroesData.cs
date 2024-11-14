@@ -1,3 +1,4 @@
+using Microsoft.Data.Sqlite;
 using Microsoft.Extensions.Options;
 using TourOfHeroes.API.Models;
 
@@ -5,17 +6,7 @@ namespace TourOfHeroes.API.Data;
 
 public class HeroesData : IHeroesData
 {
-    private readonly IList<Hero> _heroes = new List<Hero> {
-      new Hero(12, "Dr. Nice"),
-      new Hero(13, "Bombasto"),
-      new Hero(14, "Celeritas"),
-      new Hero(15, "Magneta"),
-      new Hero(16, "RubberMan"),
-      new Hero(17, "Dynama"),
-      new Hero(18, "Dr. IQ"),
-      new Hero(19, "Magma"),
-      new Hero(20, "Tornado")
-    };
+    private readonly IList<Hero> _heroes = new List<Hero> { };
 
     private readonly DataConfig _dataConfig;
 
@@ -23,7 +14,7 @@ public class HeroesData : IHeroesData
     {
         _dataConfig = dataConfig.Value;
 
-        Console.WriteLine($"Connection String: {_dataConfig.ConnectionString}");
+        HeroesDbHelper.SeedDatabase(_dataConfig.ConnectionString);
     }
 
     public IList<Hero> GetHeroes(string name)
