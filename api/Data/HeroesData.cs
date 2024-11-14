@@ -50,7 +50,32 @@ public class HeroesData : IHeroesData
 
     public Hero? GetHero(int id)
     {
-        return _heroes.FirstOrDefault(h => h.Id == id);
+        var query =
+            @"
+                SELECT id, name
+                FROM tbl_heroes
+                WHERE id = $id
+            ";
+
+        using var connection = new SqliteConnection(_dataConfig.ConnectionString);
+        connection.Open();
+
+        var parameters = new Dictionary<string, object> {
+            { "id", id }
+        };
+
+        var reader = HeroesDbHelper.ExecuteQueryWithParameter(connection, query, parameters);
+
+        if (reader.HasRows)
+        {
+            reader.Read();
+            var heroId = reader.GetInt32(0);
+            var heroName = reader.GetString(1);
+
+            return new Hero(heroId, heroName);
+        }
+
+        return null;
     }
 
     public Hero? UpdateHero(Hero hero, string name)
