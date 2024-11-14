@@ -66,14 +66,10 @@ public static class HeroesDbHelper
 
         command.CommandText = query;
 
-        Console.WriteLine(query);
-
         foreach (var parameter in parameters)
         {
-            Console.WriteLine($"Added param: [{parameter.Key}] {parameter.Value}");
             command.Parameters.AddWithValue($"${parameter.Key}", parameter.Value);
         }
-
 
         return command.ExecuteReader();
     }
