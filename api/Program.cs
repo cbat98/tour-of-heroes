@@ -12,6 +12,7 @@ public class Program
         // Add services to the container.
 
         builder.Services.AddSingleton<IHeroesService, HeroesService>();
+        builder.Services.Configure<DataConfig>(builder.Configuration.GetSection("Data"));
         builder.Services.AddSingleton<IHeroesData, HeroesData>();
 
         builder.Services.AddControllers();

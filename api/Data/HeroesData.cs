@@ -1,3 +1,4 @@
+using Microsoft.Extensions.Options;
 using TourOfHeroes.API.Models;
 
 namespace TourOfHeroes.API.Data;
@@ -15,6 +16,15 @@ public class HeroesData : IHeroesData
       new Hero(19, "Magma"),
       new Hero(20, "Tornado")
     };
+
+    private readonly DataConfig _dataConfig;
+
+    public HeroesData(IOptions<DataConfig> dataConfig)
+    {
+        _dataConfig = dataConfig.Value;
+
+        Console.WriteLine($"Connection String: {_dataConfig.ConnectionString}");
+    }
 
     public IList<Hero> GetHeroes(string name)
     {
