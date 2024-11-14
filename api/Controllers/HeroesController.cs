@@ -39,9 +39,12 @@ public class HeroesController : ControllerBase
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-    public ActionResult<Hero> UpdateHero(Hero newHero)
+    public ActionResult<Hero> UpdateHero(int id, Hero newHero)
     {
+        newHero.SetId(id);
         var hero = _heroesService.GetHero(newHero.Id);
+
+        Console.WriteLine($"[{newHero.Id}] {newHero.Name}");
 
         if (hero is null)
         {
