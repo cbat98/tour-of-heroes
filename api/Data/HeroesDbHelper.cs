@@ -31,7 +31,7 @@ public static class HeroesDbHelper
                     );
                 ";
 
-            ExecuteQuery(connection, createTableQuery);
+            CreateCommand(connection, createTableQuery).ExecuteNonQuery();
 
             var seedHeroQuery =
                 @"
@@ -46,31 +46,25 @@ public static class HeroesDbHelper
                     {"name", hero.Name},
                 };
 
-                ExecuteQueryWithParameter(connection, seedHeroQuery, parameters);
+                CreateCommand(connection, seedHeroQuery, parameters).ExecuteNonQuery();
             }
         }
     }
 
-    public static SqliteDataReader ExecuteQuery(SqliteConnection connection, string query)
+    public static SqliteCommand CreateCommand(SqliteConnection connection, string query, IDictionary<string, object>? parameters = null)
     {
         var command = connection.CreateCommand();
 
         command.CommandText = query;
 
-        return command.ExecuteReader();
-    }
-
-    public static SqliteDataReader ExecuteQueryWithParameter(SqliteConnection connection, string query, IDictionary<string, object> parameters)
-    {
-        var command = connection.CreateCommand();
-
-        command.CommandText = query;
-
-        foreach (var parameter in parameters)
+        if (parameters is not null)
         {
-            command.Parameters.AddWithValue($"${parameter.Key}", parameter.Value);
+            foreach (var parameter in parameters)
+            {
+                command.Parameters.AddWithValue($"${parameter.Key}", parameter.Value);
+            }
         }
 
-        return command.ExecuteReader();
+        return command;
     }
 }
