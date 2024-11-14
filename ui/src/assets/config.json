@@ -1,4 +1,4 @@
 {
-  "apiHost": "https://heroes.chrl.uk",
-  "apiRoute": "api/v1"
+  "apiHost": "#{apiHost}#",
+  "apiRoute": "#{apiRoute}#"
 }
