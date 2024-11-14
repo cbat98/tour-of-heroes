@@ -1,4 +1,4 @@
-
+using TourOfHeroes.API.Data;
 using TourOfHeroes.API.Services;
 
 namespace TourOfHeroes.API;
@@ -12,6 +12,7 @@ public class Program
         // Add services to the container.
 
         builder.Services.AddSingleton<IHeroesService, HeroesService>();
+        builder.Services.AddSingleton<IHeroesData, HeroesData>();
 
         builder.Services.AddControllers();
         // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
