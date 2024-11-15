@@ -23,7 +23,7 @@ services:
     depends_on:
       - api
     environment:
-      - API_HOST=https://cbarchvm01
+      - API_HOST=https://heroes.chrl.uk
       - API_ROUTE=api/v1
     ports:
       - 8080:80
