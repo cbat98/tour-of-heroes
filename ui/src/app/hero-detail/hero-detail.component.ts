@@ -3,7 +3,6 @@ import { Location } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { Hero } from '../hero';
 import { HeroService } from '../hero.service';
-import { isIdentifier } from '@angular/compiler';
 
 @Component({
   selector: 'app-hero-detail',
