@@ -11,8 +11,8 @@ import { Hero } from '../hero';
 export class HeroSearchComponent implements OnInit {
   @Input() heroes$: Observable<Hero[]> = of([]);
   searchControl = new FormControl<string | Hero>('');
+  filteredHeroes: Observable<Hero[]> = this.heroes$;
   heroes: Hero[] = [];
-  filteredHeroes: Observable<Hero[]> = of([]);
 
   ngOnInit() {
     this.heroes$.subscribe(heroes => this.heroes = heroes);
