@@ -3,7 +3,7 @@ import { Observable, of } from 'rxjs';
 import { Hero } from './hero';
 import { MessageService } from './message.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { catchError, tap } from 'rxjs/operators';
+import { catchError, share, tap } from 'rxjs/operators';
 import { AppConfigService } from './app-config.service';
 
 @Injectable({
@@ -28,7 +28,8 @@ export class HeroService {
     return this.http.get<Hero[]>(this.heroApiUrls.heroes)
       .pipe(
         tap(_ => this.log('fetched heroes')),
-        catchError(this.handleError<Hero[]>('getHeroes', []))
+        catchError(this.handleError<Hero[]>('getHeroes', [])),
+        share()
       );
   }
 
