@@ -17,4 +17,7 @@ ENV ASPNETCORE_URLS=http://+:80
 
 COPY --from=build /app/pub .
 
-ENTRYPOINT ["dotnet", "./TourOfHeroes.API.dll"]
+COPY ./entrypoint.sh .
+RUN chmod +x ./entrypoint.sh
+
+ENTRYPOINT ["/bin/sh", "-c", "./entrypoint.sh"]
