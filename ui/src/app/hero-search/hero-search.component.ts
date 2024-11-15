@@ -34,5 +34,4 @@ export class HeroSearchComponent implements OnInit {
 
     return this.heroes.filter(option => option.name.toLowerCase().includes(filterValue));
   }
-
 }
