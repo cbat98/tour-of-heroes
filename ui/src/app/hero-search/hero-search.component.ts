@@ -1,8 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { map, startWith, Observable, of } from 'rxjs';
 import { FormControl } from '@angular/forms';
 import { Hero } from '../hero';
-import { HeroService } from '../hero.service';
 
 @Component({
   selector: 'app-hero-search',
@@ -10,16 +9,13 @@ import { HeroService } from '../hero.service';
   styleUrls: ['./hero-search.component.css']
 })
 export class HeroSearchComponent implements OnInit {
+  @Input() heroes$: Observable<Hero[]> = of([]);
   searchControl = new FormControl<string | Hero>('');
   heroes: Hero[] = [];
   filteredHeroes: Observable<Hero[]> = of([]);
 
-  constructor(private heroService: HeroService) { }
-
   ngOnInit() {
-    this.heroService.getHeroes()
-    .subscribe(heroes => this.heroes = heroes);
-
+    this.heroes$.subscribe(heroes => this.heroes = heroes);
     this.filteredHeroes = this.searchControl.valueChanges.pipe(
       startWith(''),
       map(value => {

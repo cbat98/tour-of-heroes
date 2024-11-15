@@ -3,4 +3,4 @@
   <button mat-raised-button color="primary" *ngFor="let hero of heroes" routerLink="/detail/{{hero.id}}">{{hero.name}}</button>
 </div>
 
-<app-hero-search></app-hero-search>
+<app-hero-search [heroes$]=h$ ></app-hero-search>
