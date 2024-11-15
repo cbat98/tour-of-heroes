@@ -4,5 +4,7 @@ html, body {
 
 body {
   margin: 0;
+  max-width: 85rem;
+  margin-inline: auto;
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
