@@ -13,7 +13,9 @@ services:
         source: heroes-data
         target: /app/data
     networks:
-      - ingress
+      ingress:
+        aliases:
+          - toh-api
   ui:
     build:
       context: "./ui"
@@ -26,7 +28,9 @@ services:
     ports:
       - 8080:80
     networks:
-      - ingress
+      ingress:
+        aliases:
+          - toh-ui
   # proxy:
   #   image: nginx:1.27
   #   depends_on:
