@@ -17,6 +17,8 @@ services:
     ports:
       - 5152:80
       - 5153:443
+    environment:
+      - CONNECTION_STRING=DataSource=/app/data/heroes.db
     volumes:
       - type: volume
         source: heroes-data
