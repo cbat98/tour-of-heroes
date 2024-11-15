@@ -19,6 +19,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInput, MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { MatTableModule } from '@angular/material/table';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 @NgModule({
   declarations: [
@@ -43,6 +45,8 @@ import { MatExpansionModule } from '@angular/material/expansion';
     MatInputModule,
     MatListModule,
     MatExpansionModule,
+    MatTableModule,
+    MatCheckboxModule,
   ],
   providers: [
     {
