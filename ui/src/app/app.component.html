@@ -1,7 +1,5 @@
 <h1>{{ title }}</h1>
-<mat-button-toggle-group name="fontStyle" aria-label="Font Style">
-  <mat-button-toggle routerLink="/dashboard">Dashboard</mat-button-toggle>
-  <mat-button-toggle routerLink="/heroes">Heroes</mat-button-toggle>
-</mat-button-toggle-group>
+  <button mat-raised-button color="primary" routerLink="/dashboard">Dashboard</button>
+  <button mat-raised-button color="primary" routerLink="/heroes">Heroes</button>
 <router-outlet></router-outlet>
 <app-messages></app-messages>
