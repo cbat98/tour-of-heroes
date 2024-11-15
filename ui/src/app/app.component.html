@@ -1,5 +1,14 @@
-<h1>{{ title }}</h1>
-<button mat-raised-button color="primary" routerLink="/dashboard">Dashboard</button>
-<button mat-raised-button color="primary" routerLink="/heroes">Heroes</button>
-<router-outlet></router-outlet>
-<app-messages></app-messages>
+<mat-toolbar color="primary">
+  <span>Tour of Heroes</span>
+</mat-toolbar>
+
+<div id="page">
+  <h2>Navigation:</h2>
+  <button mat-raised-button color="primary" routerLink="/dashboard">Dashboard</button>
+  <button mat-raised-button color="primary" routerLink="/heroes">Heroes</button>
+
+  <div id="main-content">
+    <router-outlet></router-outlet>
+    <app-messages></app-messages>
+  </div>
+</div>

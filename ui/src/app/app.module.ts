@@ -23,6 +23,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { MatIconModule } from '@angular/material/icon';
     MatCheckboxModule,
     MatCardModule,
     MatIconModule,
+    MatToolbarModule,
   ],
   providers: [
     {

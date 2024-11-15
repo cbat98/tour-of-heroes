@@ -1,0 +1,15 @@
+mat-toolbar>span {
+  margin-left: 1rem;
+}
+
+#page {
+  padding: 2rem;
+}
+
+#page > button {
+  margin-inline: 0.5rem;
+}
+
+#main-content {
+  margin-top: 1rem;
+}
