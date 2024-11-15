@@ -1,9 +1,24 @@
 <div>
   <h2>Messages</h2>
+  <mat-accordion>
+    <mat-expansion-panel hideToggle>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Messages ({{messageService.messages.length}})
+        </mat-panel-title>
+        <mat-panel-description>
+          Show debug messages
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <mat-list role="list">
+        <mat-list-item role="listitem" *ngFor='let message of messageService.messages'>
+          {{message}}
+        </mat-list-item>
+        <mat-list-item *ngIf="!messageService.messages.length">
+          No Messages
+        </mat-list-item>
+      </mat-list>
+    </mat-expansion-panel>
+  </mat-accordion>
   <button mat-raised-button color="basic" (click)="messageService.clear()">Clear messages</button>
-  <div>
-    <div *ngFor='let message of messageService.messages'>
-      {{message}}
-    </div>
-  </div>
 </div>
