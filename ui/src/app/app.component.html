@@ -1,7 +1,7 @@
 <h1>{{ title }}</h1>
-<nav>
-  <a routerLink="/dashboard">Dashboard</a>
-  <a routerLink="/heroes">Heroes</a>
-</nav>
+<mat-button-toggle-group name="fontStyle" aria-label="Font Style">
+  <mat-button-toggle routerLink="/dashboard">Dashboard</mat-button-toggle>
+  <mat-button-toggle routerLink="/heroes">Heroes</mat-button-toggle>
+</mat-button-toggle-group>
 <router-outlet></router-outlet>
 <app-messages></app-messages>
