@@ -1,6 +1,6 @@
 <div>
   <h2>Messages</h2>
-  <button type="button" class="clear" (click)="messageService.clear()">Clear messages</button>
+  <button mat-raised-button color="accent" (click)="messageService.clear()">Clear messages</button>
   <div>
     <div *ngFor='let message of messageService.messages'>
       {{message}}
