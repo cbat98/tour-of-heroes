@@ -23,7 +23,7 @@ services:
     depends_on:
       - api
     environment:
-      - API_HOST=http://cbarchvm01:5152
+      - API_HOST=https://cbarchvm01
       - API_ROUTE=api/v1
     ports:
       - 8080:80
@@ -31,19 +31,6 @@ services:
       ingress:
         aliases:
           - toh-ui
-  # proxy:
-  #   image: nginx:1.27
-  #   depends_on:
-  #     - ui
-  #   ports:
-  #     - 80:80
-  #     - 443:443
-  #   volumes:
-  #     - ./proxy/nginx.conf.template:/etc/nginx/templates/nginx.conf.template
-  #     - ./proxy/chrl.pem:/etc/ssl/chrl.pem
-  #     - ./proxy/chrl.key:/etc/ssl/chrl.key
-  #   networks:
-  #     - ingress
 volumes:
   heroes-data:
 networks:
