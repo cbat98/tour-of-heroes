@@ -21,9 +21,7 @@ services:
     depends_on:
       - api
     environment:
-      - NGINX_HOST=ui
-      - NGINX_PORT=80
-      - API_HOST=https://heroes.chrl.uk
+      - API_HOST=http://cbarchvm01:5152
       - API_ROUTE=api/v1
     ports:
       - 8080:80

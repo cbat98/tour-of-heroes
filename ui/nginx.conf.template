@@ -1,6 +1,5 @@
 server {
-    listen ${NGINX_PORT};
-    server_name ${NGINX_HOST};
+    listen 80 default_server;
     root /usr/share/nginx/html;
     index index.html;
 
