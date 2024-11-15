@@ -3,6 +3,7 @@ import { Location } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { Hero } from '../hero';
 import { HeroService } from '../hero.service';
+import { isIdentifier } from '@angular/compiler';
 
 @Component({
   selector: 'app-hero-detail',
@@ -11,6 +12,7 @@ import { HeroService } from '../hero.service';
 })
 export class HeroDetailComponent implements OnInit {
   @Input() hero?: Hero;
+  isEditing = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -29,7 +31,9 @@ export class HeroDetailComponent implements OnInit {
 
   getHero(): void {
     const id = Number(this.route.snapshot.paramMap.get('id'));
-    this.heroService.getHero(id).subscribe(hero => this.hero = hero);
+    this.heroService.getHero(id).subscribe(hero => {
+      this.hero = hero;
+    });
   }
 
   goBack(): void {
@@ -40,5 +44,12 @@ export class HeroDetailComponent implements OnInit {
     if (this.hero) {
       this.heroService.updateHero(this.hero).subscribe(() => this.goBack());
     }
+  }
+
+  toggleEditing() {
+    if (this.isEditing) {
+      this.save();
+    }
+    this.isEditing = !this.isEditing;
   }
 }

@@ -21,6 +21,8 @@ import { MatListModule } from '@angular/material/list';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatTableModule } from '@angular/material/table';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatCardModule } from '@angular/material/card';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -47,6 +49,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     MatExpansionModule,
     MatTableModule,
     MatCheckboxModule,
+    MatCardModule,
+    MatIconModule,
   ],
   providers: [
     {
