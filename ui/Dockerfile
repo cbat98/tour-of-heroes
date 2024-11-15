@@ -24,3 +24,5 @@ ENV NGINX_PORT=80
 COPY --from=build /app/dist/tour-of-heroes /usr/share/nginx/html
 COPY ./nginx.conf.template /etc/nginx/templates/
 COPY ./entrypoint.sh /docker-entrypoint.d/
+
+RUN chmod +x /docker-entrypoint.d/entrypoint.sh
