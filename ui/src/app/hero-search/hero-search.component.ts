@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
-import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs';
+import { map, startWith, Observable, of } from 'rxjs';
+import { FormControl } from '@angular/forms';
 import { Hero } from '../hero';
 import { HeroService } from '../hero.service';
 
@@ -10,20 +10,33 @@ import { HeroService } from '../hero.service';
   styleUrls: ['./hero-search.component.css']
 })
 export class HeroSearchComponent implements OnInit {
-  heroes$!: Observable<Hero[]>;
-  private searchTerms = new Subject<string>();
+  searchControl = new FormControl<string | Hero>('');
+  heroes: Hero[] = [];
+  filteredHeroes: Observable<Hero[]> = of([]);
 
-  constructor(private heroService: HeroService) {}
+  constructor(private heroService: HeroService) { }
 
-  search(term: string): void {
-    this.searchTerms.next(term);
-  }
+  ngOnInit() {
+    this.heroService.getHeroes()
+    .subscribe(heroes => this.heroes = heroes);
 
-  ngOnInit(): void {
-    this.heroes$ = this.searchTerms.pipe(
-      debounceTime(300),
-      distinctUntilChanged(),
-      switchMap((term: string) => this.heroService.searchHeroes(term))
+    this.filteredHeroes = this.searchControl.valueChanges.pipe(
+      startWith(''),
+      map(value => {
+        const name = typeof value === 'string' ? value : value?.name;
+        return name ? this.filter(name as string) : this.heroes.slice();
+      }),
     );
   }
+
+  displayFn(hero: Hero): string {
+    return hero && hero.name ? hero.name : '';
+  }
+
+  private filter(name: string): Hero[] {
+    const filterValue = name.toLowerCase();
+
+    return this.heroes.filter(option => option.name.toLowerCase().includes(filterValue));
+  }
+
 }
