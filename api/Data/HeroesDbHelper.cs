@@ -6,15 +6,15 @@ namespace TourOfHeroes.API.Data;
 public static class HeroesDbHelper
 {
     private static IList<Hero> _heroes = new List<Hero> {
-      new Hero(12, "Dr. Nice"),
-      new Hero(13, "Bombasto"),
-      new Hero(14, "Celeritas"),
-      new Hero(15, "Magneta"),
-      new Hero(16, "RubberMan"),
-      new Hero(17, "Dynama"),
-      new Hero(18, "Dr. IQ"),
-      new Hero(19, "Magma"),
-      new Hero(20, "Tornado")
+      new Hero(1, "Dr. Nice"),
+      new Hero(2, "Bombasto"),
+      new Hero(3, "Celeritas"),
+      new Hero(4, "Magneta"),
+      new Hero(5, "RubberMan"),
+      new Hero(6, "Dynama"),
+      new Hero(7, "Dr. IQ"),
+      new Hero(8, "Magma"),
+      new Hero(9, "Tornado")
     };
 
     public static void SeedDatabase(string connectionString)
