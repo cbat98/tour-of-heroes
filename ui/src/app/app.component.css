@@ -1,15 +1,31 @@
-mat-toolbar>span {
-  margin-left: 1rem;
-}
+  #nav-small-screen {
+    display: none;
+  }
 
-#page {
-  padding: 2rem;
-}
+  #nav-big-screen>button {
+    margin-left: 1em;
+    margin-right: -1em;
+  }
 
-#page > button {
-  margin-inline: 0.5rem;
-}
+  @media(max-width: 720px) {
+    #nav-small-screen {
+      display: flex;
+    }
 
-#main-content {
-  margin-top: 1rem;
-}
+    #nav-small-screen>* {
+      flex: 1;
+    }
+
+    #nav-big-screen>button {
+      display: none;
+    }
+  }
+
+  mat-toolbar>span {
+    margin-left: 1rem;
+  }
+
+  #main-content {
+    margin-top: 1rem;
+    margin-left: 1rem;
+  }
