@@ -1,7 +1,8 @@
 <div *ngIf="hero">
+  <h2>Hero Details</h2>
   <mat-card>
     <mat-card-header>
-      <mat-card-title>{{hero.name | uppercase}} Details</mat-card-title>
+      <mat-card-title>{{hero.id}}: {{hero.name | uppercase}}</mat-card-title>
     </mat-card-header>
     <mat-card-content>
       <span>Id: {{hero.id}}</span>
