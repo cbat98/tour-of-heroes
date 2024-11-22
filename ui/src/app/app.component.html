@@ -1,14 +1,14 @@
-<mat-toolbar color="primary">
+<mat-toolbar id="nav-big-screen" color="primary">
   <span>Tour of Heroes</span>
+  <button mat-flat-button color="primary" routerLink="/dashboard">Dashboard</button>
+  <button mat-flat-button color="primary" routerLink="/heroes">Heroes</button>
+</mat-toolbar>
+<mat-toolbar id="nav-small-screen" color="primary">
+  <button mat-flat-button color="primary" routerLink="/dashboard">Dashboard</button>
+  <button mat-flat-button color="primary" routerLink="/heroes">Heroes</button>
 </mat-toolbar>
 
-<div id="page">
-  <h2>Navigation</h2>
-  <button mat-raised-button color="primary" routerLink="/dashboard">Dashboard</button>
-  <button mat-raised-button color="primary" routerLink="/heroes">Heroes</button>
-
-  <div id="main-content">
-    <router-outlet></router-outlet>
-    <app-messages></app-messages>
-  </div>
+<div id="main-content">
+  <router-outlet></router-outlet>
+  <app-messages></app-messages>
 </div>
