@@ -17,7 +17,7 @@ public class HeroesData : IHeroesData
         HeroesDbHelper.SeedDatabase(_dataConfig.ConnectionString);
     }
 
-    public IList<Hero> GetHeroes(string name)
+    public async Task<IList<Hero>> GetHeroesAsync(string name)
     {
         var query =
             @"
@@ -33,7 +33,7 @@ public class HeroesData : IHeroesData
         using var connection = new SqliteConnection(_dataConfig.ConnectionString);
         connection.Open();
 
-        var reader = HeroesDbHelper.CreateCommand(connection, query, parameters).ExecuteReader();
+        var reader = await HeroesDbHelper.CreateCommand(connection, query, parameters).ExecuteReaderAsync();
 
         var heroes = new List<Hero>();
 
@@ -48,7 +48,7 @@ public class HeroesData : IHeroesData
         return heroes;
     }
 
-    public Hero? GetHero(int id)
+    public async Task<Hero?> GetHeroAsync(int id)
     {
         var query =
             @"
@@ -64,7 +64,7 @@ public class HeroesData : IHeroesData
         using var connection = new SqliteConnection(_dataConfig.ConnectionString);
         connection.Open();
 
-        var reader = HeroesDbHelper.CreateCommand(connection, query, parameters).ExecuteReader();
+        var reader = await HeroesDbHelper.CreateCommand(connection, query, parameters).ExecuteReaderAsync();
 
         if (reader.HasRows)
         {
@@ -78,7 +78,7 @@ public class HeroesData : IHeroesData
         return null;
     }
 
-    public Hero? UpdateHero(Hero hero, string name)
+    public async Task<Hero?> UpdateHeroAsync(Hero hero, string name)
     {
         var query =
             @"
@@ -95,12 +95,12 @@ public class HeroesData : IHeroesData
         using var connection = new SqliteConnection(_dataConfig.ConnectionString);
         connection.Open();
 
-        var rowsChanged = HeroesDbHelper.CreateCommand(connection, query, parameters).ExecuteNonQuery();
+        var rowsChanged = await HeroesDbHelper.CreateCommand(connection, query, parameters).ExecuteNonQueryAsync();
 
         return rowsChanged > 0 ? new Hero(hero.Id, name) : null;
     }
 
-    public Hero AddHero(NewHeroDto newHeroDto)
+    public async Task<Hero> AddHeroAsync(NewHeroDto newHeroDto)
     {
         var query =
             @"
@@ -115,7 +115,7 @@ public class HeroesData : IHeroesData
         using var connection = new SqliteConnection(_dataConfig.ConnectionString);
         connection.Open();
 
-        HeroesDbHelper.CreateCommand(connection, query, parameters).ExecuteReader();
+        await HeroesDbHelper.CreateCommand(connection, query, parameters).ExecuteReaderAsync();
 
         query =
             @"
@@ -124,7 +124,7 @@ public class HeroesData : IHeroesData
                 WHERE id = last_insert_rowid()
             ";
 
-        var reader = HeroesDbHelper.CreateCommand(connection, query).ExecuteReader();
+        var reader = await HeroesDbHelper.CreateCommand(connection, query).ExecuteReaderAsync();
 
         reader.Read();
 
@@ -134,7 +134,7 @@ public class HeroesData : IHeroesData
         return new Hero(heroId, heroName);
     }
 
-    public bool DeleteHero(int id)
+    public async Task<bool> DeleteHeroAsync(int id)
     {
         var query =
             @"
@@ -149,7 +149,7 @@ public class HeroesData : IHeroesData
         using var connection = new SqliteConnection(_dataConfig.ConnectionString);
         connection.Open();
 
-        var rowsChanged = HeroesDbHelper.CreateCommand(connection, query, parameters).ExecuteNonQuery();
+        var rowsChanged = await HeroesDbHelper.CreateCommand(connection, query, parameters).ExecuteNonQueryAsync();
 
         return rowsChanged > 0;
     }

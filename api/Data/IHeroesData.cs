@@ -4,9 +4,9 @@ namespace TourOfHeroes.API.Data;
 
 public interface IHeroesData
 {
-    public IList<Hero> GetHeroes(string name);
-    public Hero? GetHero(int id);
-    public Hero? UpdateHero(Hero hero, string name);
-    public Hero AddHero(NewHeroDto newHeroDto);
-    public bool DeleteHero(int id);
+    public Task<IList<Hero>> GetHeroesAsync(string name);
+    public Task<Hero?> GetHeroAsync(int id);
+    public Task<Hero?> UpdateHeroAsync(Hero hero, string name);
+    public Task<Hero> AddHeroAsync(NewHeroDto newHeroDto);
+    public Task<bool> DeleteHeroAsync(int id);
 }

@@ -18,18 +18,18 @@ public class HeroesController : ControllerBase
     [HttpGet]
     [Route("")]
     [ProducesResponseType(StatusCodes.Status200OK)]
-    public IList<Hero> GetHeroes(string name = "")
+    public async Task<IList<Hero>> GetHeroes(string name = "")
     {
-        return _heroesService.GetHeroes(name);
+        return await _heroesService.GetHeroesAsync(name);
     }
 
     [HttpGet]
     [Route("{id}")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public ActionResult<Hero> GetHero(int id)
+    public async Task<ActionResult<Hero>> GetHero(int id)
     {
-        var hero = _heroesService.GetHero(id);
+        var hero = await _heroesService.GetHeroAsync(id);
 
         return (hero is not null) ? Ok(hero) : NotFound();
     }
@@ -39,16 +39,16 @@ public class HeroesController : ControllerBase
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-    public ActionResult<Hero> UpdateHero(int id, NewHeroDto newHeroDto)
+    public async Task<ActionResult<Hero>> UpdateHero(int id, NewHeroDto newHeroDto)
     {
-        var hero = _heroesService.GetHero(id);
+        var hero = await _heroesService.GetHeroAsync(id);
 
         if (hero is null)
         {
             return NotFound();
         }
 
-        hero = _heroesService.UpdateHero(hero, newHeroDto.Name);
+        hero = await _heroesService.UpdateHeroAsync(hero, newHeroDto.Name);
 
         return (hero is not null) ? Ok() : NotFound();
     }
@@ -56,9 +56,9 @@ public class HeroesController : ControllerBase
     [HttpPost]
     [Route("")]
     [ProducesResponseType(StatusCodes.Status200OK)]
-    public ActionResult<Hero> AddHero(NewHeroDto newHeroDto)
+    public async Task<ActionResult<Hero>> AddHero(NewHeroDto newHeroDto)
     {
-        var hero = _heroesService.AddHero(newHeroDto);
+        var hero = await _heroesService.AddHeroAsync(newHeroDto);
 
         return Ok(hero);
     }
@@ -67,9 +67,9 @@ public class HeroesController : ControllerBase
     [Route("{id}")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public ActionResult<Hero> DeleteHero(int id)
+    public async Task<ActionResult<Hero>> DeleteHero(int id)
     {
-        var deleted = _heroesService.DeleteHero(id);
+        var deleted = await _heroesService.DeleteHeroAsync(id);
 
         return (deleted) ? Ok() : NotFound();
     }

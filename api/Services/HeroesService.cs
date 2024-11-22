@@ -12,28 +12,28 @@ public class HeroesService : IHeroesService
         _heroesData = heroesData;
     }
 
-    public Hero AddHero(NewHeroDto newHeroDto)
+    public async Task<Hero> AddHeroAsync(NewHeroDto newHeroDto)
     {
-        return _heroesData.AddHero(newHeroDto);
+        return await _heroesData.AddHeroAsync(newHeroDto);
     }
 
-    public bool DeleteHero(int id)
+    public async Task<bool> DeleteHeroAsync(int id)
     {
-        return _heroesData.DeleteHero(id);
+        return await _heroesData.DeleteHeroAsync(id);
     }
 
-    public Hero? GetHero(int id)
+    public async Task<Hero?> GetHeroAsync(int id)
     {
-        return _heroesData.GetHero(id);
+        return await _heroesData.GetHeroAsync(id);
     }
 
-    public IList<Hero> GetHeroes(string name)
+    public async Task<IList<Hero>> GetHeroesAsync(string name)
     {
-        return _heroesData.GetHeroes(name);
+        return await _heroesData.GetHeroesAsync(name);
     }
 
-    public Hero? UpdateHero(Hero hero, string name)
+    public async Task<Hero?> UpdateHeroAsync(Hero hero, string name)
     {
-        return _heroesData.UpdateHero(hero, name);
+        return await _heroesData.UpdateHeroAsync(hero, name);
     }
 }
