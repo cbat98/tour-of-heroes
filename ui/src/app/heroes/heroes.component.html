@@ -32,7 +32,7 @@
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row;columns: displayedColumns;" routerLink="/detail/{{row.id}}"></tr>
+    <tr mat-row *matRowDef="let row;columns: displayedColumns;" routerLink="/heroes/{{row.id}}"></tr>
   </table>
 
   <button id="delete-hero" mat-raised-button color="accent" [disabled]="isAnySelected()" (click)="deleteSelected()">Delete Selected</button>
