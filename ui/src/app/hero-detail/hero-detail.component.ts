@@ -11,6 +11,7 @@ import { HeroService } from '../hero.service';
 })
 export class HeroDetailComponent implements OnInit {
   @Input() hero?: Hero;
+  referenceHero?: Hero;
   isEditing = false;
 
   constructor(
@@ -22,6 +23,10 @@ export class HeroDetailComponent implements OnInit {
       id: 0,
       name: "Hero"
     }
+    this.referenceHero = {
+      id: this.hero.id,
+      name: this.hero.name
+    };
   }
 
   ngOnInit(): void {
@@ -32,6 +37,10 @@ export class HeroDetailComponent implements OnInit {
     const id = Number(this.route.snapshot.paramMap.get('id'));
     this.heroService.getHero(id).subscribe(hero => {
       this.hero = hero;
+      this.referenceHero = {
+        id: hero.id,
+        name: hero.name,
+      };
     });
   }
 
@@ -40,15 +49,29 @@ export class HeroDetailComponent implements OnInit {
   }
 
   save(): void {
+    if (this.hero && this.isEditing) {
+      this.heroService.updateHero(this.hero).subscribe(_ => this.toggleEditing());
+    }
+  }
+
+  delete(): void {
     if (this.hero) {
-      this.heroService.updateHero(this.hero).subscribe();
+      this.heroService.deleteHero(this.hero.id).subscribe(_ => this.goBack());
     }
   }
 
   toggleEditing() {
-    if (this.isEditing) {
-      this.save();
-    }
     this.isEditing = !this.isEditing;
+  }
+
+  cancelEdit(): void {
+    console.log(this.referenceHero);
+    console.log(this.hero);
+
+    this.hero = {
+      id: this.referenceHero?.id ?? 0,
+      name: this.referenceHero?.name ?? "Hero"
+    }
+    this.toggleEditing();
   }
 }
