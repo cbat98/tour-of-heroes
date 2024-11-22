@@ -5,6 +5,11 @@
   #nav-big-screen>button {
     margin-left: 1em;
     margin-right: -1em;
+    align-items: end;
+  }
+
+  #nav-big-screen img {
+    height: 50px;
   }
 
   @media(max-width: 720px) {
