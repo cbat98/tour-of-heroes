@@ -30,6 +30,10 @@
     margin-left: 1rem;
   }
 
+  mat-toolbar>span:hover{
+    cursor: pointer;
+  }
+
   #main-content {
     margin-top: 1rem;
     margin-left: 1rem;
