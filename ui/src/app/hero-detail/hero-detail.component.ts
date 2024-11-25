@@ -3,6 +3,7 @@ import { Location } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { Hero } from '../hero';
 import { HeroService } from '../hero.service';
+import { Md5 } from 'ts-md5';
 
 @Component({
   selector: 'app-hero-detail',
@@ -31,6 +32,10 @@ export class HeroDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.getHero();
+  }
+
+  getIdHash(): string {
+    return Md5.hashStr((this.hero?.id ?? 0).toString());
   }
 
   getHero(): void {
