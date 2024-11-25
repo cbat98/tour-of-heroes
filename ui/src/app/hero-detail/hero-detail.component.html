@@ -2,7 +2,10 @@
   <h2>Hero Details</h2>
   <mat-card>
     <mat-card-header>
+      <mat-card-title-group>
       <mat-card-title>{{hero.id}}: {{hero.name | uppercase}}</mat-card-title>
+      <img mat-card-sm-image src="https://www.gravatar.com/avatar/{{getIdHash()}}?s=128&d=retro&r=PG">
+      </mat-card-title-group>
     </mat-card-header>
     <mat-card-content>
       <span>Id: {{hero.id}}</span>
