@@ -3,6 +3,14 @@ mat-card, button {
   margin-right: 1.5rem;
 }
 
+@media(min-width: 769px) {
+mat-card-title-group {
+  display: grid;
+  grid-template-columns: repeat(3, 33.33%);
+  grid-auto-rows: 1fr;
+}
+}
+
 button {
   margin-top: 1em;
 }
