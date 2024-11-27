@@ -12,7 +12,7 @@
     height: 50px;
   }
 
-  @media(max-width: 720px) {
+  @media(max-width: 767px){
     #nav-small-screen {
       display: flex;
     }
