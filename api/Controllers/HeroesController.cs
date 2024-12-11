@@ -48,9 +48,9 @@ public class HeroesController : ControllerBase
             return NotFound();
         }
 
-        hero = await _heroesService.UpdateHeroAsync(hero, newHeroDto.Name);
+        var newHero = await _heroesService.UpdateHeroAsync(hero, newHeroDto.Name);
 
-        return (hero is not null) ? Ok() : NotFound();
+        return (newHero is not null) ? Ok() : Conflict();
     }
 
     [HttpPost]
