@@ -12,8 +12,14 @@ public class HeroesService : IHeroesService
         _heroesData = heroesData;
     }
 
-    public async Task<Hero> AddHeroAsync(NewHeroDto newHeroDto)
+    public async Task<Hero?> AddHeroAsync(NewHeroDto newHeroDto)
     {
+        var existingHero = (await _heroesData.GetHeroesAsync("")).FirstOrDefault(h => h.Name == newHeroDto.Name);
+        if (existingHero is not null)
+        {
+            return await Task.FromResult<Hero?>(null);
+        }
+
         return await _heroesData.AddHeroAsync(newHeroDto);
     }
 

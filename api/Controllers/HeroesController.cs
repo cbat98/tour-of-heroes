@@ -60,6 +60,10 @@ public class HeroesController : ControllerBase
     {
         var hero = await _heroesService.AddHeroAsync(newHeroDto);
 
+        if (hero is null) {
+            return Conflict();
+        }
+
         return Ok(hero);
     }
 
