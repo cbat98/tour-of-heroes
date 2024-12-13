@@ -55,7 +55,11 @@ export class HeroDetailComponent implements OnInit {
 
   save(): void {
     if (this.hero && this.isEditing) {
-      this.heroService.updateHero(this.hero).subscribe(_ => this.toggleEditing());
+      this.heroService.updateHero(this.hero).subscribe(hero => {
+        if (hero != null) {
+          this.toggleEditing()
+        }
+      });
     }
   }
 
