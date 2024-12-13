@@ -40,7 +40,7 @@ public class HeroesService : IHeroesService
 
     public async Task<Hero?> UpdateHeroAsync(Hero hero, string name)
     {
-        var existingHero = (await _heroesData.GetHeroesAsync("")).FirstOrDefault(h => h.Name == name);
+        var existingHero = (await _heroesData.GetHeroesAsync("")).FirstOrDefault(h => h.Name == name && h.Id != hero.Id);
         if (existingHero is not null)
         {
             return await Task.FromResult<Hero?>(null);
