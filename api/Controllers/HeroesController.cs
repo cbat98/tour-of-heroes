@@ -18,9 +18,9 @@ public class HeroesController : ControllerBase
     [HttpGet]
     [Route("")]
     [ProducesResponseType(StatusCodes.Status200OK)]
-    public async Task<IList<Hero>> GetHeroes(string name = "")
+    public async Task<ActionResult<IList<Hero>>> GetHeroes(string name = "")
     {
-        return await _heroesService.GetHeroesAsync(name);
+        return Ok(await _heroesService.GetHeroesAsync(name));
     }
 
     [HttpGet]
