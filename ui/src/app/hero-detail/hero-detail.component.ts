@@ -74,9 +74,6 @@ export class HeroDetailComponent implements OnInit {
   }
 
   cancelEdit(): void {
-    console.log(this.referenceHero);
-    console.log(this.hero);
-
     this.hero = {
       id: this.referenceHero?.id ?? 0,
       name: this.referenceHero?.name ?? "Hero"
