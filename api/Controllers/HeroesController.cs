@@ -50,7 +50,7 @@ public class HeroesController : ControllerBase
 
         var newHero = await _heroesService.UpdateHeroAsync(hero, newHeroDto.Name);
 
-        return (newHero is not null) ? Ok() : Conflict();
+        return (newHero is not null) ? Ok(newHero) : Conflict();
     }
 
     [HttpPost]
