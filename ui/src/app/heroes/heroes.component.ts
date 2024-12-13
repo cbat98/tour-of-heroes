@@ -1,5 +1,5 @@
 import { SelectionModel } from '@angular/cdk/collections';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { MatTable } from '@angular/material/table';
 import { Hero } from '../hero';
 import { HeroService } from '../hero.service';
@@ -12,6 +12,7 @@ import { HeroService } from '../hero.service';
 export class HeroesComponent implements OnInit {
   heroes: Hero[] = [];
   displayedColumns: string[] = ["id", "name", "select"];
+  @ViewChild('heroName') heroName!: ElementRef;
   @ViewChild(MatTable) table!: MatTable<Hero>;
   selection = new SelectionModel<Hero>(true, []);
 
@@ -53,6 +54,7 @@ export class HeroesComponent implements OnInit {
 
     this.heroService.addHero({ name } as Hero).subscribe(hero => {
       if (hero != null) {
+        this.heroName.nativeElement.value = "";
         this.heroes.push(hero);
         this.table.renderRows();
       }
